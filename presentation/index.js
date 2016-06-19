@@ -9,6 +9,7 @@ import {
   Text,
   List,
   ListItem,
+  Image,
 } from "spectacle";
 
 import {
@@ -47,6 +48,10 @@ export default class Presentation extends Component {
             >
               Originally written in two weeks, Javascript is a language born in the browser. Over its years of growth and adoption, the language moved to the server and even the IoT (internet of things) world. It is the only way we can build native apps, web apps, and servers using the same language. <br/><br/><S type="bold italic">Why Javascript?</S>: because javascript is everywhere and we want to bring the Gospel to the world.
             </Text>
+
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Image src="https://pbs.twimg.com/media/ClUu_bOWYAAjZl2.jpg" />
           </Slide>
 
 
@@ -188,15 +193,82 @@ export default class Presentation extends Component {
               <S type="italic">Code isolation and one of the best parts of javascript</S>
             </Heading>
           </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading fit caps lineHeight={1} textColor="primary">
+              Blocks
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              On the most simple level, blocks are statements bound between curly braces. Since ES6, blocks define an isolated scope. They are used to group statements together and prevent variable leakage on a global scale. Blocks are pretty much awesome.
+            </Text>
+          </Slide>
+          <CodeSlide
+            lang="javascript"
+            transition={[]}
+            code={require("raw!./blocks.example")}
+            ranges={[
+              { loc: [0, 1], title: "Blocks in code" },
+              { loc: [1, 4] },
+              { loc: [1, 4], note: "the x variable exists within the block created between lines 2 - 4"},
+              { loc: [5, 10] },
+              { loc: [5, 10], note: "In es5, blocks did not encapsulate scope of its contents" },
+              { loc: [11, 16] },
+              { loc: [11, 16], note: "In es6, blocks do encapsulate scope"}
+            ]}/>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading fit caps lineHeight={1} textColor="primary">
+              Closures
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Clousures are your best friend. No really, they are. A closure lets you associate some data with a <code>function</code> that operates on that data. They protect against variable hoisting and scope leakage, and let you make functions with internal state. They also make more sense in code so...
+            </Text>
+          </Slide>
+          <CodeSlide
+            lang="javascript"
+            transition={[]}
+            code={require("raw!./closures.example")}
+            ranges={[
+              { loc: [0, 1], title: "Closures in code" },
+              { loc: [1, 11] },
+              { loc: [1, 11], note: "`name` only exists within the closure of whoami" },
+              { loc: [3, 8], title: "A Closure" },
+              { loc: [5, 6], title: "Another closure" },
+              { loc: [10, 11], note: "When called, displayName has access to the parent closure and the value of `name`"},
+              { loc: [12, 22] },
+              { loc: [13, 19], note: "`makeWhoAmI` creates a function that keeps access to `name` because of the closure" },
+              { loc: [15, 16], note: "Returning the function" },
+              { loc: [20, 21], note: "When we make the function, it can be assigned to a variable" }, {
+                loc: [21, 22], note: "When called, the created displayName has access to the parent closure and the value of `name`"
+              }, { loc: [23, 29], title: "Practical Closures"},
+              { loc: [25, 28], note: "`encourage` creates a function that you can use to encourage someone" },
+              { loc: [26, 27], note: "The created function keeps the environment data (`x`) from when it was created"},
+              { loc: [30, 32], note: "Here we create two encouraging functions with different messages"},
+              { loc: [30, 32], note: "Without closures, `youCanDoIt` would be overwritten by `believeInYourSelf"},
+              { loc: [33, 35], note: "When called, the functios retain the data from their creation, and use the new data passed into the funciton"},
+              { loc: [34, 35], title: "Believe in yourself Team!"}
+
+            ]}/>
           {/*
-            1. Why Javascript
-            2. Primitives / Objects / Globals
+            1. Why javascript?
+            2. Primitives, Objects, and globals
             3. Blocks / Closures
             4. Variables
             5. Functions
-            6. `this`
-            7. Environments
-            8. Modules
+            6. Control Flow (if…else…try…catch…switch)
+            7. Loops
             */}
           {/*<CodeSlide
             lang="typescript"

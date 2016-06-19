@@ -1,0 +1,35 @@
+
+// lexical scoping
+function whoami() {
+  const name = "James";
+  function displayName() {
+    console.log(name);
+  }
+  displayName();
+};
+
+whoami(); // James
+
+// closures in practice
+function makeWhoAmI(){
+  const name = "James";
+  return function displayName() {
+    console.log(name);
+  }
+};
+
+const whoami = makeWhoAmI();
+whoami(); // James
+
+// usage
+function encourage(x) {
+  return function(y) {
+    console.log(`${x} ${y}!`);
+  };
+}
+
+const youCanDoIt = encourage("You can do it");
+const believeInYourSelf = encourage("Believe in yourself");
+
+youCanDoIt("James"); // You can do it James!
+believeInYourSelf("Team"); // Believe in yourself Team!
