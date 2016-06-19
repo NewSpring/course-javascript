@@ -1,0 +1,21 @@
+
+// POJO / Object
+const obj = { string: "hello" };
+obj.string // "hello"
+obj["string"] // "hello"
+
+// Array
+var arr = ["hello"];
+arr[0] // "hello"
+arr.filter // [Function: filter]
+arr.length // 1
+
+// Function
+var func = function() { return "hello" };
+func(); // "hello"
+func.call // [Function: call]
+
+// Date
+var now = new Date();
+now // Sun Jun 19 2016 10:56:44 GMT-0400 (EDT)
+now.toISOString // [Function: toISOString]

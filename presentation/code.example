@@ -1,0 +1,6 @@
+export default {
+  ["Rock.Field.Types.TextFieldType"]: function(value: string, defaultValue?: string): any {
+    if (!value && defaultValue) return defaultValue;
+    return value;
+  },
+}

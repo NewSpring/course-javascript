@@ -1,0 +1,7 @@
+
+const _boolean = true;
+const _null = null;
+const _undefined;
+const _number = 7;
+const _string = "hello";
+const _symbol = new Symbol("debug");
