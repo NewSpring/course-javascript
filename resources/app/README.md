@@ -12,7 +12,7 @@
 
   ```
   git clone https://github.com/NewSpring/course-javascript.git
-  cd course-javascript
+  cd course-javascript/resources/app/
   ```
   
 3. [Meteor](https://www.meteor.com/) is a JavaScript framework we'll use in the class. Don't worry too much about what 
