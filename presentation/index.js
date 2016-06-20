@@ -545,7 +545,7 @@ export default class Presentation extends Component {
               { loc: [5, 10], note: "Else statement" },
               { loc: [11, 16], note: "Else if statement" },
               { loc: [17, 23] },
-              { loc: [24, 25], note: "Single line conditional"},
+              { loc: [24, 25], note: "Single line conditional ❤️ ❤️ ❤️ (JP) "},
               { loc: [26, 34] },
               { loc: [33, 34] },
               { loc: [27, 28], note: "Early return from the function" },
