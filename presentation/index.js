@@ -153,7 +153,7 @@ export default class Presentation extends Component {
               { loc: [12, 16], note: "Functions are objects that can manipulate other objects, or the state of the application" },
               { loc: [13, 14], note: "Functions are created using the `function` or `=>` syntax" },
               { loc: [14, 15], note: "Functions can be called using brackets" },
-              { loc: [15, 16], note: "Functions alos have methods on the object for other uses" },
+              { loc: [15, 16], note: "Functions also have methods on the object for other uses" },
               { loc: [17, 21] },
               { loc: [17, 21], note: "Dates are an example of a global object type that uses the constructor notation instead of the literal notation" },
               { loc: [18, 19], note: "That just means use `new` when making a date" },
