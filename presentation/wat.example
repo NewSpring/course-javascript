@@ -1,0 +1,9 @@
+
+[] + []; // ""
+[] + {}; // [object + Object]
+{} + []; // 0
+
+Array(16);
+Array(16).join("wat");
+Array(16).join("wat" + 1);
+Array(16).join("wat" - 1) + " Batman";

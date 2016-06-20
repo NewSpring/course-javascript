@@ -1,0 +1,30 @@
+
+function() {
+  console.log("hello");
+};
+
+function hello() {
+  console.log("hello");
+};
+
+function hi() {
+  return "hi";
+};
+const hey = hi(); // hi
+
+function say(word) {
+  return `say ${word}`;
+};
+
+() => "hello";
+
+const hithere = () => {
+  console.log("hi there");
+};
+
+const howdy = () => "howdy";
+const hai = () => ("hai");
+
+const speak = (word) => {
+  return `speak ${word}`;
+};

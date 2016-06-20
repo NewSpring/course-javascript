@@ -1,0 +1,33 @@
+
+// var
+var a = "a";
+a = "b";
+
+console.log(a); // b
+
+// let
+let b = "b";
+b = "c";
+
+console.log(b); // c
+
+// const
+const c = "c";
+c = "d"; // this may throw in your compiler
+
+console.log(c); // c = "c"
+
+// variable hoisting
+console.log("The value of d is " + d);
+var d;
+
+console.log("The value of e is " + e);
+let e;
+
+// closure and hoisting
+var myvar = "my value";
+
+(function() {
+  console.log(myvar);
+  var myvar = "local value";
+})();

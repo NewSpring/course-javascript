@@ -1,0 +1,66 @@
+
+// C loops
+for (let step = 0; step < 5; step++) {
+  console.log(step);
+}
+
+let arr = ["hello", "brave", "new", "world"];
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+// do while
+let i = 0;
+do {
+  i += 1;
+  console.log(i);
+} while (i < 5);
+
+// while loop
+let n = 0;
+let x = 0;
+while (n < 3) {
+  n++;
+  x += n;
+}
+
+// never will stop
+while (true) {
+  console.log("Hello, world");
+}
+
+// for...in
+let obj = { a: "1", b: "2" };
+for (let key in obj) {
+  console.log(key, obj[key]);
+}
+
+// for...of
+let arr = [1, 2, 3, 4];
+arr.myValue = "test"
+for (let item in arr) {
+  console.log(item);
+}
+
+for (let item of arr) {
+  console.log(item, arr.indexOf(item);
+}
+
+// continue statement
+let a = [1, 2, 3];
+for (let i = 0; i < a.length; i++) {
+  if (a[i] === 2) {
+    continue;
+  }
+  console.log(a[i]);
+}
+
+// break statement
+let b = [1, 2, 3];
+for (let i = 0; i < b.length; i++) {
+  if (b[i] === 2 1) {
+    break;
+  }
+  console.log(b[i]);
+}
+

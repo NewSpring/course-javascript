@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   Image,
+  Code,
 } from "spectacle";
 
 import {
@@ -75,7 +76,7 @@ export default class Presentation extends Component {
               textSize="28px"
               lineHeight={1.4}
             >
-              Javascript is made up of 7 data types. Six of those types are primitive. These types are immutable, meaning they cannot be changed. In day to day development, these used to represent values of things in your application.
+              Javascript is made up of 7 data types. Six of those types are primitive. These types are immutable, meaning they cannot be changed. In day to day development, these are used to represent values of things in your application.
             </Text>
             <Text
               margin="30px 0 0 0"
@@ -181,7 +182,7 @@ export default class Presentation extends Component {
               textSize="28px"
               lineHeight={1.4}
             >
-              One of the most commonly used global is the <code>console</code>. This global (and its methods) allow you to print out various information about the application. Not all globals are the same! For example <code>process</code> exists globally in node, but not in the browser whereas <code>navigator</code> exists in browser but not on node.
+              One of the most commonly used global is the <code>console</code>. This global (and its methods) allow you to print out various information about the application. Not all globals are the same! For example <code>process</code> exists globally in node, but not in the browser whereas <code>navigator</code> exists in browser but not in node.
             </Text>
           </Slide>
 
@@ -261,26 +262,473 @@ export default class Presentation extends Component {
               { loc: [34, 35], title: "Believe in yourself Team!"}
 
             ]}/>
-          {/*
-            1. Why javascript?
-            2. Primitives, Objects, and globals
-            3. Blocks / Closures
-            4. Variables
-            5. Functions
-            6. Control Flow (if…else…try…catch…switch)
-            7. Loops
-            */}
-          {/*<CodeSlide
-            lang="typescript"
+
+          <Slide transition={[]} bgColor="primary">
+            <Heading size={1} fit caps lineHeight={1} textColor="light-primary">
+              Variables
+            </Heading>
+            <Heading size={8} textFont="secondary" textColor="light-secondary">
+              <S type="italic">Naming things is hard</S>
+            </Heading>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading fit caps lineHeight={1} textColor="primary">
+              var, let, and const
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              A variable is a symbolic name for values in your code. A variable must start with a letter, underscore, or a dollar sign. Javascript is case sensitive so <code>var Name;</code> is different than <code> var name;</code>. The standard casing for javascript is camelCase (as opposed to PascalCase in C languages and snake_case in python). A variable can be assigned on declaration <code>var name = "james";</code> or left empty <code>var name;</code>.
+            </Text>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Javascript has three variable types (as of ES6): <code>var</code>, <code>let</code>, and <code>const</code>. <S type="bold italic"><code>var</code></S> declares a hoistabled generic variable. <S type="bold italic"><code>let</code></S> declares a block scope local variable. It is simillar to <code>var</code> but only exists in the block it is defined within. <S type="bold italic"><code>const</code></S> declares a read only named constant.
+            </Text>
+
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              Var and Hoisting
+            </Heading>
+            <Heading size={10} textFont="secondary" textColor="dark-secondary">
+              <S type="italic">or why we don't use var anymore</S>
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              A variable declared using the <code>var</code> or <code>let</code> statement with no initial value specified has the value <code>undefined</code>. If you attempt to access an undeclared variable that was created using <code>var</code> or <code>let</code> it will read undefined. However, <code>var</code> variables will be hoisted to the top of their scope. This hoisting can cause silent errors in code, or have unintended side effects.
+            </Text>
+
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              When in doubt, use <S type="bold italic"><code>const</code></S>. If you need to reassign the variable, 1. make sure you do, 2. use <S type="bold italic"><code>let</code></S>.
+            </Text>
+
+          </Slide>
+          <CodeSlide
+            lang="javascript"
             transition={[]}
-            code={require("raw!./code.example")}
+            code={require("raw!./variables.example")}
             ranges={[
-              { loc: [0, 1], title: "Code Sample!" },
-              { loc: [1, 2] },
-              { loc: [1, 2], note: "Heres a note!" },
-              { loc: [2, 3], note: "Single line returns are acceptable" },
-              { loc: [4, 5], note: "trailing commas are super helpful in git diffs" },
-            ]}/>*/}
+              { loc: [0, 1], title: "Variables in code" },
+              { loc: [2, 3], },
+              { loc: [1, 6], note: "Variables can be reassigned when initialized with `var`"},
+              { loc: [8, 9], },
+              { loc: [7, 12], note: "Variables can be reassigned when initialized with `let`"},
+              { loc: [14, 15], },
+              { loc: [13, 18], note: "Variables cannot be reassigned when initialized with `const`"}, { loc: [19, 26], title: "Variable Hoisting"},
+              { loc: [20, 21], note: "This should read `The value of d is undefined`" },
+              { loc: [23, 24], note: "This should throw a [Reference Error]" },
+              { loc: [26, 33], title: "Hoisting and Closures" },
+              { loc: [26, 33] },
+              { loc: [30, 31], note: "This will be undefined because the scoped myvar is hoisted"}
+            ]}/>
+
+          <Slide transition={[]} bgColor="primary">
+            <Heading size={1} fit caps lineHeight={1} textColor="light-primary">
+              Functions
+            </Heading>
+            <Heading size={8} textFont="secondary" textColor="light-secondary">
+              <S type="italic">The building blocks of applications</S>
+            </Heading>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              The anatomy of a function
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              A <code>function</code> is made up of two required statements, and three optional ones. First is declaration itself. In ES6 you can declare a <code>function</code> using <S type="bold italic"><code>function</code></S> or a <S type="bold italic"><code>=></code></S>. Next is the actual statement. This is either formed using brackets <S type="bold italic"><code>{"{}"}</code></S>, using parenthesis when using an arrow delcaration <S type="bold italic"><code>{"()"}</code></S> or using the same line <S type="bold italic"><code>x => x + 1;</code></S>.
+            </Text>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              The optional parts of a <code>function</code> are the <code>name</code>, <code>arguments</code> and the <code>return</code>. The <S type="bold italic"><code>name</code></S> is used to reference the <code>function</code> and is helpful when debugging. The <S type="bold italic"><code>arguments</code></S> are the values passed to the <code>function</code> by the callee. These are new variables created within the closure of the function. The <S type="bold italic"><code>return </code></S> statement within the block, means the function returns a value as the result of the function. Unbracketed functions assume a return.
+            </Text>
+          </Slide>
+          <CodeSlide
+            lang="javascript"
+            transition={[]}
+            code={require("raw!./function-structure.example")}
+            ranges={[
+              { loc: [0, 1], title: "Functions in code" },
+              { loc: [1, 4] },
+              { loc: [5, 8], note: "named function `hello`" },
+              { loc: [9, 13], note: "function with a return statement" },
+              { loc: [14, 17], note: "function with an argument" },
+              { loc: [18, 19], note: "single line unnamed function a return and arrow declaration" },
+              { loc: [20, 24] },
+              { loc: [24, 26], note: "implicit return functions", },
+              { loc: [27, 30] }
+            ]}/>
+
+          <Slide transition={[]} bgColor="primary">
+            <Heading size={1} fit caps lineHeight={1} textColor="light-primary">
+              Conditionals
+            </Heading>
+            <Heading size={8} textFont="secondary" textColor="light-secondary">
+              <S type="italic">Using falsy and thruthy values to control flow</S>
+            </Heading>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              Falsy values
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              A falsy value is a value, either computed or declared, that evaluates to false when evaluated in a Boolean context. The following values are always falsy:
+            </Text>
+            <List textFont="secondary" textColor="dark-primary">
+              <ListItem textSize="28px" margin="0 0 10px 0">false</ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0">0</ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0">""</ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0">null</ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0">undefined</ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0">NaN</ListItem>
+            </List>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              Falsy statements
+            </Heading>
+            <Text
+              margin="30px 0 20px 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Comparison of falsy values in javascript is often misunderstood. This is due to the type coercion of values in some cases. The falsy values <code>false</code>, <code>0</code>, and <code>""</code> are all equivalent and can be compared against each other using a coerced equality.
+            </Text>
+            <Text
+              margin="30px 0 20px 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Evaluation of Boolean statements should always be done using <S type="bold italic"><code>===</code></S> instead of <S type="bold italic"><code>==</code></S>. In javascript <code>==</code> tries to coerce the type of both sides of evaluation.
+            </Text>
+          </Slide>
+          <CodeSlide
+            lang="javascript"
+            transition={[]}
+            code={require("raw!./falsy.example")}
+            ranges={[
+              { loc: [0, 1], title: "Is this true?!" },
+              { loc: [1, 3] },
+              { loc: [1, 2], note: "true"},
+              { loc: [2, 3], note: "false"},
+              { loc: [4, 6] },
+              { loc: [4, 5], note: "true"},
+              { loc: [5, 6], note: "false"},
+              { loc: [7, 9] },
+              { loc: [7, 8], note: "true"},
+              { loc: [8, 9], note: "false"},
+              { loc: [10, 12] },
+              { loc: [10, 11], note: "false"},
+              { loc: [11, 12], note: "false"},
+              { loc: [13, 15] },
+              { loc: [13, 14], note: "true"},
+              { loc: [14, 15], note: "true"},
+              { loc: [16, 18] },
+              { loc: [16, 17], note: "true"},
+              { loc: [17, 18], note: "true"},
+              { loc: [19, 21] },
+              { loc: [19, 20], note: "true"},
+              { loc: [20, 21], note: "false"},
+              { loc: [22, 24] },
+              { loc: [22, 23], note: "false"},
+              { loc: [23, 24], note: "false"},
+              { loc: [25, 27] },
+              { loc: [25, 26], note: "false"},
+              { loc: [26, 27], note: "false"},
+            ]}/>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              Truthy statements
+            </Heading>
+            <Text
+              margin="30px 0 20px 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Everything that is not falsy in javascript is truthy. The same type coercion applys when checking truthy values as when checking falsy.
+            </Text>
+            <Text
+              margin="30px 0 20px 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Evaluation of Boolean statements should always be done using <S type="bold italic"><code>===</code></S> instead of <S type="bold italic"><code>==</code></S>. In javascript <code>==</code> tries to coerce the type of both sides of evaluation. Yes this is repeated from the last slide, its that important.
+            </Text>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              If...else // switch...case
+            </Heading>
+            <Text
+              margin="30px 0 20px 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Javascript has two types of conditional statements; <S type="bold italic"><code>if...else</code></S> and <S type="bold italic"><code>switch...case</code></S>. The <S type="italic">if statement</S> executes a statement if the specified condition evaluates as truthy. Multiple if..else statements can be combined to create an <S type="italic">else if statement</S>. Conditions in if conditionals can be different between each check point. Conditionals also do not break evaluation.
+            </Text>
+            <Text
+              margin="30px 0 20px 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              The <S type="italic">switch statement</S> evaluates an expression and matches it to a case clause to execute a statement. Unlike if statements, switch statements only evaluate a single condition. However, they can still run multiple statements if it matches multiple cases.
+            </Text>
+          </Slide>
+          <CodeSlide
+            lang="javascript"
+            transition={[]}
+            code={require("raw!./conditionals.example")}
+            ranges={[
+              { loc: [0, 1], title: "Conditionals in code" },
+              { loc: [1, 4], note: "Simple conditional" },
+              { loc: [5, 10], note: "Else statement" },
+              { loc: [11, 16], note: "Else if statement" },
+              { loc: [17, 23] },
+              { loc: [24, 25], note: "Single line conditional"},
+              { loc: [26, 34] },
+              { loc: [33, 34] },
+              { loc: [27, 28], note: "Early return from the function" },
+              { loc: [32, 33] },
+              { loc: [29, 30], note: "Intended return from the function" },
+              { loc: [36, 37], title: "Switch Statement" },
+              { loc: [36, 37], note: "Switch + expression" },
+              { loc: [37, 38], note: "Case statement" },
+              { loc: [39, 40], note: "Break statement" },
+              { loc: [40, 42], note: "Combined statements" },
+              { loc: [44, 45], note: "Using a default" },
+              { loc: [48, 58] },
+              { loc: [53, 54], note: "Missing break statement" },
+              { loc: [51, 57], note: "Both statements are executed" }
+            ]}/>
+
+          <Slide transition={[]} bgColor="primary">
+            <Heading size={1} fit caps lineHeight={1} textColor="light-primary">
+              Loops
+            </Heading>
+            <Heading size={8} textFont="secondary" textColor="light-secondary">
+              <S type="italic">Iteration in three forms</S>
+            </Heading>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              The catalog of loops
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              Javascript has three base loop types with two additional loop syntax methods for easily iterating over Objects and Arrays. Loops also come with a few reserved helpers to assist in controlling loops.
+            </Text>
+            <List textFont="secondary" textColor="dark-primary">
+              <ListItem textSize="28px" margin="0 0 10px 0"><S type="italic bold"><code>for</code></S></ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0"><S type="italic bold"><code>do...while</code></S></ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0"><S type="italic bold"><code>while</code></S></ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0"><S type="italic bold"><code>for...in</code></S></ListItem>
+              <ListItem textSize="28px" margin="0 0 10px 0"><S type="italic bold"><code>for...of</code></S></ListItem>
+            </List>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              The basic <S type="italic bold"><code>for</code></S> loop
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              The basic <S type="italic bold"><code>for</code></S> loop (also called a C loop) is a generic method for iterating a statement for a given number of times. The syntax for the loop is:<br/><br/><S type="italic bold"><code>for ([initial]; [condition]; [increment])&#8199;{"{"}<br/>&#8199;&#8199;statement<br/>{"}"}</code></S>
+            </Text>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              The <S type="italic bold"><code>do...while</code></S> loop
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              The <S type="italic bold"><code>do...while</code></S> statement repeats until a specified condition evaluates to false. A <S type="italic bold"><code>do...while</code></S> statement looks as follows:<br/><br/><S type="italic bold"><code>do<br/>&#8199;&#8199;statement<br/>while (condition);</code></S>
+            </Text>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              The <S type="italic bold"><code>while</code></S> loop
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              The <S type="italic bold"><code>while</code></S> statement executes its statements as long as a specified condition evaluates to true. A <S type="italic bold"><code>while</code></S> statement looks as follows:<br/><br/><S type="italic bold"><code>while (condition)<br/>&#8199;&#8199;statement;</code></S>
+            </Text>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              The <S type="italic bold"><code>for...in</code></S> loop
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              The <S type="italic bold"><code>for...in</code></S> loop is a shorthand method for iterating over all keys in an object. It takes the following form:<br/><br/><S type="italic bold"><code>for (let key in obj)&#8199;{"{"}<br/>&#8199;&#8199;statement;<br/>{"}"}</code></S>
+            </Text>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              The <S type="italic bold"><code>for...of</code></S> loop
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              The <S type="italic bold"><code>for...of</code></S> loop is a shorthand method for iterating over all the values in an array. It takes the following form:<br/><br/><S type="italic bold"><code>for (let value of arr)&#8199;{"{"}<br/>&#8199;&#8199;statement;<br/>{"}"}</code></S>
+            </Text>
+          </Slide>
+          <Slide transition={[]} bgColor="light-primary">
+            <Heading  fit caps lineHeight={1} textColor="primary">
+              Loop helpers
+            </Heading>
+            <Text
+              margin="30px 0 0 0"
+              textColor="dark-primary"
+              textFont="secondary"
+              textAlign="left"
+              textSize="28px"
+              lineHeight={1.4}
+            >
+              All loops have a few reserved words that can be used to control the execution of the loop. <S type="italic bold"><code>label</code></S>, <S type="italic bold"><code>continue</code></S>, and <S type="italic bold"><code>break</code></S> are the controlling words. In this lesson we will just cover <code>continue</code> and <code>break</code>. When inside a loop, if you want to move to the next execution cycle, you can you use a <code>continue</code> statement which will break execution of the current loop. If you need to stop iterating over a loop, use a <code>break</code> statement.
+            </Text>
+          </Slide>
+          <CodeSlide
+            lang="javascript"
+            transition={[]}
+            code={require("raw!./loops.example")}
+            ranges={[
+              { loc: [0, 1], title: "Loops in code" },
+              { loc: [1, 10] },
+              { loc: [2, 5] },
+              { loc: [2, 3], note: "Initial expression, condition, increment expression" },
+              { loc: [6, 10] },
+              { loc: [6, 8], note: "Iterate over an array" },
+              { loc: [8, 9], note: "Access the item in the array" },
+              { loc: [11, 17] },
+              { loc: [18, 25] },
+              { loc: [26, 30], note: "This will lock up your application forever" },
+              { loc: [31, 36] },
+              { loc: [32, 33], note: "Here we create an object with two keys" },
+              { loc: [33, 34], note: "Define the internal variable using `let`" },
+              { loc: [34, 35], note: "Access the values from the keys" },
+              { loc: [37, 43] },
+              { loc: [38, 40], note: "Define an array, and attach an arbitray value to it" },
+              { loc: [40, 43], note: "If you use a for...in loop, you will get something like this" }, { loc: [40, 43], note: "0, 1, 2, 3, test" },
+              { loc: [44, 47], note: "How to actually access the data" },
+              { loc: [48, 56] },
+              { loc: [52, 53], note: "Continue statement" },
+              { loc: [57, 65] },
+              { loc: [61, 62], note: "Break statement" }
+
+            ]}/>
+
+          <Slide transition={[]} bgColor="primary">
+            <Heading size={1} margin="0 0 20px 0" fit caps lineHeight={1} textColor="light-primary">
+              Thank you!
+            </Heading>
+            <Heading size={8} textFont="secondary" textColor="light-secondary">
+              <S type="italic">Tune in next week for...</S>
+            </Heading>
+          </Slide>
+          <Slide transition={[]} bgColor="primary">
+            <Heading size={8} textFont="secondary" textColor="light-secondary">
+              <S type="italic">Javascript 102</S>
+            </Heading>
+            <Heading size={1} margin="20px 0 0 0" fit caps lineHeight={1} textColor="light-primary">
+              Errors, RegEx, class, and `this`
+            </Heading>
+          </Slide>
+
         </Deck>
       </Spectacle>
     );

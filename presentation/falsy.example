@@ -1,0 +1,27 @@
+
+let a = (false == 0);
+let b = (false === 0);
+
+let c = (false == "");
+let d = (false === "");
+
+let e = (0 == "");
+let f = (0 === "");
+
+let g = (null == false);
+let h = (null === false);
+
+let i = (null == null);
+let j = (null === null);
+
+let l = (undefined == undefined);
+let m = (undefined === undefined);
+
+let n = (undefined == null);
+let o = (undefined === null);
+
+let p = (NaN == null);
+let q = (NaN === null);
+
+let r = (NaN == NaN);
+let s = (NaN === NaN);

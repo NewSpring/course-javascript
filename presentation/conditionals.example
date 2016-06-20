@@ -1,0 +1,58 @@
+
+if (true) {
+  console.log("Success");
+}
+
+if (false) {
+  // never executed
+} else {
+  console.log("told you so");
+}
+
+if (false) {
+  // never executed
+} else if (true) {
+  console.log("hello from down here");
+}
+
+if (true) {
+  // never executed
+  console.log("hello from up here");
+} else if (true) {
+  // never executed
+}
+
+if (true) console.log("single line return");
+
+function earlyReturn(val) {
+  if (!val) return;
+
+  return val + 10;
+}
+
+earlyReturn(1);
+earlyReturn();
+
+
+switch ("Papayas") {
+  case "Oranges":
+    console.log("Oranges are tasty.");
+    break;
+  case "Mangoes":
+  case "Papayas":
+    console.log("Mangoes and papayas are $2.79 a pound.");
+    break;
+  default:
+    console.log("Sorry, we dont like Papayas");
+};
+
+switch (0) {
+  case -1:
+    break;
+  case 0:
+    console.log(0);
+    // break;
+  case 1:
+    console.log(1);
+    break;
+}
